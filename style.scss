@@ -16,3 +16,43 @@
 // ==========================================================================
 // Components
 // ==========================================================================
+
+@import "vl-ui-content-header/src/scss/content-header";
+
+::slotted(img) {
+  @include object-fit;
+
+  display: block;
+  max-width: none;
+}
+
+::slotted(a.vl-content-header__context__link) {
+    @include content-header-title-small-bold;
+    font-size: 2.4rem;
+    line-height: 1.1;
+    display: block;
+    padding: $vl-padding-small-title-right-side;
+    background: $vl-bg-gradient;
+    color: $vl-content-header-text-color;
+    text-decoration: none;
+
+    @include respond-to(small) {
+      background: $vl-content-header-title-bg-color;
+      font-size: 1.8rem;
+      font-weight: 500;
+      padding: 0.3rem 1rem 0.4rem;
+    }
+
+    .vl-content-header--alt & {
+      background: $vl-bg-gradient-alt;
+      color: if($vl-is-corporate, $vl-content-header-text-color, $vl-accent-fg-color);
+    }
+
+    // place next level closer
+    margin-right: -2.6rem;
+
+    @include respond-to(small) {
+      margin-right: 0;
+    }
+}
+
