@@ -69,6 +69,10 @@ export class VlContentHeader extends VlElement(HTMLElement) {
 		return this.querySelector('a[slot="title-link"]');
 	}
 
+	get _classPrefix() {
+		return 'vl-content-header';
+	}
+
 	__processSlotElements() {
 		this.__processImage(this.pictureSlotElement);
 		this.__processContext(this.contextSlotElement);
@@ -82,12 +86,16 @@ export class VlContentHeader extends VlElement(HTMLElement) {
 
 	__processContext(context) {
 		this.__clearChildren(this.contextElement);
-		this.contextElement.appendChild(context.cloneNode(true));
+		context = context.cloneNode(true);
+		context.classList.add(this._classPrefix + '__context__link');
+		this.contextElement.appendChild(context);
 	}
 
 	__processTitle(title) {
 		this.__clearChildren(this.titleElement);
-		this.titleElement.appendChild(title.cloneNode(true));
+		title = title.cloneNode(true);
+		title.classList.add(this._classPrefix + '__title__link');
+		this.titleElement.appendChild(title);
 	}
 
 	__clearChildren(element) {
