@@ -7,8 +7,6 @@ import { VlElement, define } from '/node_modules/vl-ui-core/vl-core.js';
  * 
  * @extends VlElement
  * 
- * @property 
- * 
  * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-content-header/releases/latest|Release notes}
  * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-content-header/issues|Issues}
  * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-content-header.html|Demo}
@@ -20,31 +18,89 @@ import { VlElement, define } from '/node_modules/vl-ui-core/vl-core.js';
  */
 export class VlContentHeader extends VlElement(HTMLElement) {
 	constructor() {
-        super(`
-            <style>
-                @import '../style.css';
-            </style>
+		super(`
+			<style>
+				@import '../style.css';
+			</style>
 			<header class="vl-content-header vl-content-header--large vl-content-header--show-mobile vl-content-header--has-context">
 				<div class="vl-content-header__wrapper">
-	        		<picture class="vl-content-header__bg">
-	        			<slot name="image"></slot>
-	        		</picture>
-	        		<div class="vl-layout">
-	        			<div class="vl-content-header__content">
-	        				<div class="vl-content-header__context vl-content-header__context--has-link">
-        						<slot name="context-link"></slot>
-	        				</div>
-	        				<h2 class="vl-content-header__title vl-content-header__title--has-link">
-			        			<slot name="title-link"></slot>
-	        				</h2>
-	        			</div>
-	        		</div>
-			    </div>
-        	</header>
-          `);
-    }
-	
-	
+					<picture id="picture" class="vl-content-header__bg"></picture>
+					<div class="vl-layout">
+						<div class="vl-content-header__content">
+							<div id="context" class="vl-content-header__context vl-content-header__context--has-link"></div>
+							<h2 id="title" class="vl-content-header__title vl-content-header__title--has-link"></h2>
+						</div>
+					</div>
+				</div>
+			</header>
+		`);
+	}
+
+	connectedCallback() {
+		this.__processSlotElements();
+		this._observer = this.__observeSlotElements(() => this.__processSlotElements());
+	}
+
+	disconnectedCallback() {
+		this._observer.disconnect();
+	}
+
+	get pictureElement() {
+		return this._shadow.querySelector('#picture');
+	}
+
+	get pictureSlotElement() {
+		return this.querySelector('img[slot="image"]');
+	}
+
+	get contextElement() {
+		return this._shadow.querySelector('#context');
+	}
+
+	get contextSlotElement() {
+		return this.querySelector('a[slot="context-link"]');
+	}
+
+	get titleElement() {
+		return this._shadow.querySelector('#title');
+	}
+
+	get titleSlotElement() {
+		return this.querySelector('a[slot="title-link"]');
+	}
+
+	__processSlotElements() {
+		this.__processImage(this.pictureSlotElement);
+		this.__processContext(this.contextSlotElement);
+		this.__processTitle(this.titleSlotElement);
+	}
+
+	__processImage(image) {
+		this.__clearChildren(this.pictureElement);
+		this.pictureElement.appendChild(image.cloneNode(true));
+	}
+
+	__processContext(context) {
+		this.__clearChildren(this.contextElement);
+		this.contextElement.appendChild(context.cloneNode(true));
+	}
+
+	__processTitle(title) {
+		this.__clearChildren(this.titleElement);
+		this.titleElement.appendChild(title.cloneNode(true));
+	}
+
+	__clearChildren(element) {
+		while (element.hasChildNodes()) {
+			element.firstChild.remove();
+		}
+	}
+
+	__observeSlotElements(callback) {
+		const observer = new MutationObserver(callback);
+		observer.observe(this, { attributes: true, childList: true, characterData: true, subtree: true });
+		return observer;
+	}
 }
 
 define('vl-content-header', VlContentHeader);
