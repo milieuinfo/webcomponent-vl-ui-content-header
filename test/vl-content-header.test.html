@@ -12,7 +12,11 @@
 <body>
   <test-fixture id="vl-content-header-fixture">
     <template>
-      
+		<vl-content-header>
+   			<img slot="image" src="header.jpg" alt="Image voor de header">
+			<a slot="context-link" href="http://www.vlaanderen.be">Context</a>
+			<a slot="title-link" href="https://www.vlaanderen.be/onderwijs-en-vorming">Vlaanderen</a>
+		</vl-content-header>      
     </template>
   </test-fixture>
 
@@ -20,10 +24,85 @@
     suite('vl-content-header', () => {
       const should = chai.should();
 
-      test('vl-content-header test', () => {
-        const fixture = fixture('vl-content-header-fixture');
-        assert.isTrue(true);
+      test('Image met juiste slot attribuut wordt getoond in de header', () => {
+        const contentHeader = fixture('vl-content-header-fixture');
+		assert.isTrue(slotableImage(contentHeader).isEqualNode(slottedImage(contentHeader)));
       });
+
+      test('Wijzigingen aan de image voor de content header worden correct doorgepropageerd', (done) => {
+        const contentHeader = fixture('vl-content-header-fixture');
+        slotableImage(contentHeader).setAttribute("src", "header2.jpg");
+        setTimeout(() => {
+			expect(slottedImage(contentHeader).getAttribute("src")).to.equal("header2.jpg");
+			done();
+        })
+      });
+      
+      test('Link met juiste slot wordt als context link getoond in de header en krijgt een extra class', (done) => {
+        const contentHeader = fixture('vl-content-header-fixture');
+        setTimeout(() => {
+	        expect(slottedContextLink(contentHeader).classList.contains("vl-content-header__context__link")).to.be.ok;
+	        slottedContextLink(contentHeader).removeAttribute("class");
+	        setTimeout(() => {
+				assert.isTrue(slotableContextLink(contentHeader).isEqualNode(slottedContextLink(contentHeader)));
+				done();
+	        });
+        });
+      });
+
+      test('Wijzigingen aan de context link voor de content header worden correct doorgepropageerd', (done) => {
+        const contentHeader = fixture('vl-content-header-fixture');
+        slotableContextLink(contentHeader).setAttribute("href", "http://www.google.be");
+        setTimeout(() => {
+			expect(slottedContextLink(contentHeader).getAttribute("href")).to.equal("http://www.google.be");
+			done();
+        })
+      });
+      
+      test('Link met juiste slot wordt als title link getoond in de header en krijgt een extra class', (done) => {
+        const contentHeader = fixture('vl-content-header-fixture');
+        setTimeout(() => {
+	        expect(slottedTitleLink(contentHeader).classList.contains("vl-content-header__title__link")).to.be.ok;
+	        slottedTitleLink(contentHeader).removeAttribute("class");
+	        setTimeout(() => {
+				assert.isTrue(slotableTitleLink(contentHeader).isEqualNode(slottedTitleLink(contentHeader)));
+				done();
+	        });
+        });
+      });
+
+      test('Wijzigingen aan de context link voor de content header worden correct doorgepropageerd', (done) => {
+        const contentHeader = fixture('vl-content-header-fixture');
+        slotableTitleLink(contentHeader).setAttribute("href", "http://www.google.be");
+        setTimeout(() => {
+			expect(slottedTitleLink(contentHeader).getAttribute("href")).to.equal("http://www.google.be");
+			done();
+        })
+      });
+      
+      function slotableTitleLink(contentHeader) {
+    	  return contentHeader.querySelector("a[slot=title-link]");
+      }
+      
+      function slottedTitleLink(contentHeader) {
+    	  return contentHeader.shadowRoot.querySelector(".vl-content-header__title a");
+      }
+
+      function slotableContextLink(contentHeader) {
+    	  return contentHeader.querySelector("a[slot=context-link]");
+      }
+      
+      function slottedContextLink(contentHeader) {
+    	  return contentHeader.shadowRoot.querySelector(".vl-content-header__context a");
+      }
+
+      function slotableImage(contentHeader) {
+    	  return contentHeader.querySelector("img[slot=image]");
+      }
+      
+      function slottedImage(contentHeader) {
+    	  return contentHeader.shadowRoot.querySelector("#picture > img");
+      }
     });
   </script>
 </body>

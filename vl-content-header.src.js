@@ -11,10 +11,6 @@ import { VlElement, define } from '/node_modules/vl-ui-core/vl-core.js';
  * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-content-header/issues|Issues}
  * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-content-header.html|Demo}
  * 
- * 
- * TODO:
- * 	 vl-image maken met vaste sizes
- * 
  */
 export class VlContentHeader extends VlElement(HTMLElement) {
 	constructor() {
@@ -69,39 +65,27 @@ export class VlContentHeader extends VlElement(HTMLElement) {
 		return this.querySelector('a[slot="title-link"]');
 	}
 
-	get _classPrefix() {
-		return 'vl-content-header';
-	}
-
 	__processSlotElements() {
-		this.__processImage(this.pictureSlotElement);
-		this.__processContext(this.contextSlotElement);
-		this.__processTitle(this.titleSlotElement);
-	}
+		this.__processSlot(this.pictureElement, this.pictureSlotElement);
+		
+		const contextSlot = this.__processSlot(this.contextElement, this.contextSlotElement);
+		contextSlot.classList.add('vl-content-header__context__link');
 
-	__processImage(image) {
-		this.__clearChildren(this.pictureElement);
-		this.pictureElement.appendChild(image.cloneNode(true));
-	}
-
-	__processContext(context) {
-		this.__clearChildren(this.contextElement);
-		context = context.cloneNode(true);
-		context.classList.add(this._classPrefix + '__context__link');
-		this.contextElement.appendChild(context);
-	}
-
-	__processTitle(title) {
-		this.__clearChildren(this.titleElement);
-		title = title.cloneNode(true);
-		title.classList.add(this._classPrefix + '__title__link');
-		this.titleElement.appendChild(title);
+		const titleSlot = this.__processSlot(this.titleElement, this.titleSlotElement);
+		titleSlot.classList.add('vl-content-header__title__link');
 	}
 
 	__clearChildren(element) {
 		while (element.hasChildNodes()) {
 			element.firstChild.remove();
 		}
+	}
+	
+	__processSlot(container, slotElement) {
+		this.__clearChildren(container);
+		const slotClone = slotElement.cloneNode(true);
+		container.appendChild(slotClone);
+		return slotClone;
 	}
 
 	__observeSlotElements(callback) {
