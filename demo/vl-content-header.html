@@ -4,12 +4,13 @@
         <title>vl-content-header voorbeeld</title>
         <script type="module" src="demo.js"></script>
         <script type="module" src="../vl-content-header.src.js"></script>
+        <script type="module" src="../node_modules/vl-ui-image/vl-image.js"></script>
     </head>
 
 	<body>
 	
 		<vl-content-header>
-   			<img slot="image" sizes="100vw"
+   			<img is="vl-image" slot="image" sizes="100vw"
 			   	src="//www.vlaanderen.be/sites/default/files/ip_acm/page_banner_narrow/header.jpg"
 			   	srcset="//www.vlaanderen.be/sites/default/files/ip_acm/page_banner_mobile_alt/header.jpg 320w, //www.vlaanderen.be/sites/default/files/ip_acm/page_banner_narrow/header.jpg 1024w, //www.vlaanderen.be/sites/default/files/ip_acm/page_banner_wide_alt/header.jpg 1600w"
 			   	alt="Content Header">
