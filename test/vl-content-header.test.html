@@ -23,6 +23,7 @@
   <script>
     suite('vl-content-header', () => {
       const should = chai.should();
+      const googleHref = "http://www.google.be";
 
       test('Image met juiste slot attribuut wordt getoond in de header', () => {
         const contentHeader = fixture('vl-content-header-fixture');
@@ -31,9 +32,10 @@
 
       test('Wijzigingen aan de image voor de content header worden correct doorgepropageerd', (done) => {
         const contentHeader = fixture('vl-content-header-fixture');
-        slotableImage(contentHeader).setAttribute("src", "header2.jpg");
+        const newSrcAttribute = "header2.jpg";
+        slotableImage(contentHeader).setAttribute("src", newSrcAttribute);
         setTimeout(() => {
-			expect(slottedImage(contentHeader).getAttribute("src")).to.equal("header2.jpg");
+			expect(slottedImage(contentHeader).getAttribute("src")).to.equal(newSrcAttribute);
 			done();
         })
       });
@@ -41,7 +43,7 @@
       test('Link met juiste slot wordt als context link getoond in de header en krijgt een extra class', (done) => {
         const contentHeader = fixture('vl-content-header-fixture');
         setTimeout(() => {
-	        expect(slottedContextLink(contentHeader).classList.contains("vl-content-header__context__link")).to.be.ok;
+	        assert.isTrue(slottedContextLink(contentHeader).classList.contains("vl-content-header__context__link"));
 	        slottedContextLink(contentHeader).removeAttribute("class");
 	        setTimeout(() => {
 				assert.isTrue(slotableContextLink(contentHeader).isEqualNode(slottedContextLink(contentHeader)));
@@ -52,9 +54,9 @@
 
       test('Wijzigingen aan de context link voor de content header worden correct doorgepropageerd', (done) => {
         const contentHeader = fixture('vl-content-header-fixture');
-        slotableContextLink(contentHeader).setAttribute("href", "http://www.google.be");
+        slotableContextLink(contentHeader).setAttribute("href", googleHref);
         setTimeout(() => {
-			expect(slottedContextLink(contentHeader).getAttribute("href")).to.equal("http://www.google.be");
+			expect(slottedContextLink(contentHeader).getAttribute("href")).to.equal(googleHref);
 			done();
         })
       });
@@ -62,7 +64,7 @@
       test('Link met juiste slot wordt als title link getoond in de header en krijgt een extra class', (done) => {
         const contentHeader = fixture('vl-content-header-fixture');
         setTimeout(() => {
-	        expect(slottedTitleLink(contentHeader).classList.contains("vl-content-header__title__link")).to.be.ok;
+	        assert.isTrue(slottedTitleLink(contentHeader).classList.contains("vl-content-header__title__link"));
 	        slottedTitleLink(contentHeader).removeAttribute("class");
 	        setTimeout(() => {
 				assert.isTrue(slotableTitleLink(contentHeader).isEqualNode(slottedTitleLink(contentHeader)));
@@ -73,9 +75,9 @@
 
       test('Wijzigingen aan de context link voor de content header worden correct doorgepropageerd', (done) => {
         const contentHeader = fixture('vl-content-header-fixture');
-        slotableTitleLink(contentHeader).setAttribute("href", "http://www.google.be");
+        slotableTitleLink(contentHeader).setAttribute("href", googleHref);
         setTimeout(() => {
-			expect(slottedTitleLink(contentHeader).getAttribute("href")).to.equal("http://www.google.be");
+			expect(slottedTitleLink(contentHeader).getAttribute("href")).to.equal(googleHref);
 			done();
         })
       });

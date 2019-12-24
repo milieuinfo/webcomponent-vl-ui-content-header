@@ -8,15 +8,32 @@
     </head>
 
 	<body>
-	
-		<vl-content-header>
-   			<img is="vl-image" slot="image" sizes="100vw"
-			   	src="//www.vlaanderen.be/sites/default/files/ip_acm/page_banner_narrow/header.jpg"
-			   	srcset="//www.vlaanderen.be/sites/default/files/ip_acm/page_banner_mobile_alt/header.jpg 320w, //www.vlaanderen.be/sites/default/files/ip_acm/page_banner_narrow/header.jpg 1024w, //www.vlaanderen.be/sites/default/files/ip_acm/page_banner_wide_alt/header.jpg 1600w"
-			   	alt="Content Header">
-			<a slot="context-link" href="http://www.vlaanderen.be">Context</a>
-			<a slot="title-link" href="http://www.vlaanderen.be">Vlaanderen</a>
-		</vl-content-header>
+        <h1>vl-ui-content-header demo</h1>
+        <div>
+            <h2>Content header tonen met custom image en custom links</h2>
+            <pre>
+                <code class="line-numbers language-markup">
+					&lt;vl-content-header&gt;
+			   			&lt;img is=&quot;vl-image&quot; slot=&quot;image&quot; sizes=&quot;100vw&quot;
+						   	src=&quot;default.jpg&quot;
+						   	srcset=&quot;mobile.jpg 320w, default.jpg 1024w, wide.jpg 1600w&quot;
+						   	alt=&quot;Content Header&quot;&gt;
+						&lt;a slot=&quot;context-link&quot; href=&quot;https://www.vlaanderen.be&quot;&gt;Context&lt;/a&gt;
+						&lt;a slot=&quot;title-link&quot; href=&quot;https://www.vlaanderen.be&quot;&gt;Vlaanderen&lt;/a&gt;
+					&lt;/vl-content-header&gt;
+                </code>
+            </pre>
+            <div class="demo">
+				<vl-content-header>
+		   			<img is="vl-image" slot="image" sizes="100vw"
+					   	src="default.jpg"
+					   	srcset="mobile.jpg 320w, default.jpg 1024w, wide.jpg 1600w"
+					   	alt="Content Header">
+					<a slot="context-link" href="https://www.vlaanderen.be">Context</a>
+					<a slot="title-link" href="https://www.vlaanderen.be">Vlaanderen</a>
+				</vl-content-header>
+            </div>
+        </div>
 	
     </body>
 </html>
