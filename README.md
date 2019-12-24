@@ -1,5 +1,6 @@
 # vl-content-header
 ![GitHub issues](https://img.shields.io/github/issues-raw/milieuinfo/webcomponent-vl-ui-content-header) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/milieuinfo/webcomponent-vl-ui-content-header) ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/milieuinfo/webcomponent-vl-ui-content-header)
+
 Een functionele header of een content header bovenaan informatieve pagina's. Het geeft de gebruiker alle informatie over de website die ze bezoeken.
 
 ## Installatie
