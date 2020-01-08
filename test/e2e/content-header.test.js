@@ -10,14 +10,14 @@ describe('vl-content-header', async () => {
     });
 
 
-    it('ik kan een context-link meegegeven', async () => {
+    it('als gebruiker kan ik een context-link meegegeven', async () => {
         const header = await vlContentHeaderPage.getHeader();
         const link = await header.getContextLink();
 
         assert.isTrue(await link.getText() == 'Context');
     });
 
-    it('ik kan een title-link meegeven', async () => {
+    it('als gebruiker kan ik een title-link meegeven', async () => {
         const header = await vlContentHeaderPage.getHeader();
         const link = await header.getTitleLink();
 
