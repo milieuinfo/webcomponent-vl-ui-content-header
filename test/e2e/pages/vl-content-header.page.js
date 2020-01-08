@@ -7,6 +7,9 @@ class VlContentHeaderPage extends Page {
         return new VlContentHeader(this.driver, selector);
     }
 
+    async getHeader() {
+        return this._getContentHeader('#content-header');
+    }
     async load() {
         await super.load(Config.baseUrl + '/demo/vl-content-header.html');
     }
