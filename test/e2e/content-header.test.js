@@ -9,7 +9,6 @@ describe('vl-content-header', async () => {
         return vlContentHeaderPage.load();
     });
 
-
     it('als gebruiker kan ik een context-link meegegeven', async () => {
         const header = await vlContentHeaderPage.getHeader();
         const link = await header.getContextLink();
@@ -22,5 +21,11 @@ describe('vl-content-header', async () => {
         const link = await header.getTitleLink();
 
         assert.isTrue(await link.getText() == 'Vlaanderen');
+    });
+
+    it('image component word correct geladen', async () => {
+        const header = await vlContentHeaderPage.getHeader();
+        const imageComponent = await header.getImageComponent();
+        assert.isNotNull(imageComponent);
     });
 });

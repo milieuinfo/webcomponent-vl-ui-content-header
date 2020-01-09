@@ -1,9 +1,14 @@
 const { VlElement } = require('vl-ui-core');
 const { By } = require('selenium-webdriver');
+const { VlImage } = require('vl-ui-image');
 
 class VlContentHeader extends VlElement {  
     constructor(driver, selector) {
         super(driver, selector);
+    }
+
+    async getImageComponent() {
+        return new VlImage(this.driver, '#img-component');
     }
 
     async getImage() {
