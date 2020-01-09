@@ -1,6 +1,6 @@
 {
   "name": "vl-ui-content-header",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "index.js",
   "description": "Een functionele header of een content header bovenaan informatieve pagina's. Het geeft de gebruiker alle informatie over de website die ze bezoeken.",
   "scripts": {
