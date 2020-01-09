@@ -1,14 +1,28 @@
 {
   "name": "vl-ui-content-header",
   "version": "1.0.0",
+  "main": "index.js",
   "description": "Een functionele header of een content header bovenaan informatieve pagina's. Het geeft de gebruiker alle informatie over de website die ze bezoeken.",
   "scripts": {
     "prepare": "npm update --dev vl-ui-util && npm run prepare:util",
     "prepare:util": "npm explore vl-ui-util -- npm run util",
-    "test": "wct -l chrome,firefox --npm",
+    "pretest": "npm install chromedriver --chromedriver-force-download",
+    "test": "npm run test:unit && npm run test:e2e",
+    "test:unit": "wct --config-file ./wct.local.conf.json",
+    "test:e2e": "npm run test:server:start && npm run test:e2e:chrome && npm run test:e2e:firefox",
+    "test:e2e:grid": "npm run test:server:start && npm run test:e2e:chrome:grid && npm run test:e2e:firefox:grid",
+    "test:grid": "wct --config-file ./wct.docker.conf.json && npm run test:e2e:grid",
+    "posttest:e2e": "pkill -f http-server",
+    "test:e2e:chrome": "mocha --chrome ",
+    "test:e2e:chrome:grid": "mocha  --chrome --grid",
+    "test:e2e:firefox": "mocha --firefox",
+    "test:e2e:firefox:grid": "mocha --firefox --grid",
+    "test:e2e:opera": "mocha --opera",
+    "test:e2e:safari": "mocha --safari",
+    "test:server:start": "http-server &",
     "release": "np",
     "release:prepare": "npm run release:prepare:build && npm run release:prepare:imports && npm run release:prepare:css && npm run release:prepare:commit",
-    "release:prepare:build": "uglifyjs --compress --mangle --output vl-content-header.js -- *.src.js",
+    "release:prepare:build": "minify *.src.js > vl-content-header.js",
     "release:prepare:imports": "replace '/node_modules/vl-ui-core/vl-core.src.js' '/node_modules/vl-ui-core/vl-core.js' vl-content-header.js",
     "release:prepare:css": "replace '\\.\\./style.css' '/node_modules/vl-ui-content-header/style.css' vl-content-header.js",
     "release:prepare:commit": "git add -f vl-content-header.js && git commit --amend --no-edit && git pull",
@@ -17,28 +31,22 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/milieuinfo/webcomponent-vl-content-header.git"
+    "url": "git+https://github.com/milieuinfo/webcomponent-vl-ui-content-header.git"
   },
   "author": "DIDM",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/milieuinfo/webcomponent-vl-content-header/issues"
+    "url": "https://github.com/milieuinfo/webcomponent-vl-ui-content-header/issues"
   },
-  "homepage": "https://github.com/milieuinfo/webcomponent-vl-content-header#readme",
+  "homepage": "https://github.com/milieuinfo/webcomponent-vl-ui-content-header#readme",
   "dependencies": {
-    "vl-ui-core": "^2.0.0"
+    "vl-ui-core": "^3.0.0"
   },
   "devDependencies": {
-    "@govflanders/vl-ui-util": "^3.9.1",
     "@govflanders/vl-ui-content-header": "^3.9.1",
-    "http-server": "0.11.1",
-    "np": "3.0.4",
-    "replace": "^1.1.1",
-    "uglify-js-es6": "2.8.9",
-    "vl-ui-util": "^2.0.13",
-    "vl-ui-image": "1.0.0",
-    "wct-browser-legacy": "1.0.2",
-    "web-component-tester": "6.9.2"
+    "@govflanders/vl-ui-util": "^3.9.1",
+    "vl-ui-image": "^1.0.1",
+    "vl-ui-util": "^3.2.5"
   },
   "publishConfig": {
     "registry": "http://artifactory-pr-build.lb.cumuli.be:8081/artifactory/api/npm/acd-npm/"
