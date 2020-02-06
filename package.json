@@ -61,7 +61,7 @@
   "devDependencies": {
     "@govflanders/vl-ui-content-header": "^3.9.1",
     "@govflanders/vl-ui-util": "^3.9.1",
-    "vl-ui-image": "^1.0.1",
+    "vl-ui-image": "^2.0.0",
     "vl-ui-util": "^4.0.1"
   },
   "publishConfig": {
