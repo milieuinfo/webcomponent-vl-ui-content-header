@@ -1,6 +1,9 @@
 {
   "name": "vl-ui-content-header",
-  "version": "2.0.0",
+  "version": "1.0.1",
+  "description": "Een functionele header of een content header bovenaan informatieve pagina's. Het geeft de gebruiker alle informatie over de website die ze bezoeken.",
+  "author": "DIDM",
+  "license": "MIT",
   "main": "./src/index.js",
   "exports": {
     "require": "./index.js",
@@ -8,7 +11,17 @@
     "node": "./index.js",
     "default": "./index.js"
   },
-  "description": "Een functionele header of een content header bovenaan informatieve pagina's. Het geeft de gebruiker alle informatie over de website die ze bezoeken.",
+  "homepage": "https://github.com/milieuinfo/webcomponent-vl-ui-content-header#readme",
+  "bugs": {
+    "url": "https://github.com/milieuinfo/webcomponent-vl-ui-content-header/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/milieuinfo/webcomponent-vl-ui-content-header.git"
+  },
+  "publishConfig": {
+    "registry": "http://artifactory-pr-build.lb.cumuli.be:8081/artifactory/api/npm/acd-npm/"
+  },
   "scripts": {
     "prepare": "npm update --dev vl-ui-util && npm run prepare:util",
     "prepare:util": "npm explore vl-ui-util -- npm run util",
@@ -45,16 +58,6 @@
     "release:testless": "np --yolo",
     "demo": "http-server"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/milieuinfo/webcomponent-vl-ui-content-header.git"
-  },
-  "author": "DIDM",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/milieuinfo/webcomponent-vl-ui-content-header/issues"
-  },
-  "homepage": "https://github.com/milieuinfo/webcomponent-vl-ui-content-header#readme",
   "dependencies": {
     "vl-ui-core": "^4.0.0"
   },
@@ -66,8 +69,5 @@
     "@govflanders/vl-ui-util": "^3.9.1",
     "vl-ui-image": "^1.0.1",
     "vl-ui-util": "^4.0.1"
-  },
-  "publishConfig": {
-    "registry": "http://artifactory-pr-build.lb.cumuli.be:8081/artifactory/api/npm/acd-npm/"
   }
 }
