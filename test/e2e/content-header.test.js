@@ -5,7 +5,7 @@ const VlContentHeaderPage = require('./pages/vl-content-header.page');
 describe('vl-content-header', async () => {
     const vlContentHeaderPage = new VlContentHeaderPage(driver);
 
-    before(() => {
+    before(async () => {
         return vlContentHeaderPage.load();
     });
 
