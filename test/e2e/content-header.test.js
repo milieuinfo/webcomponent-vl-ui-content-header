@@ -9,19 +9,19 @@ describe('vl-content-header', async () => {
         return vlContentHeaderPage.load();
     });
 
-    it('als gebruiker kan ik een context-link meegegeven', async () => {
+    it('als gebruiker kan ik een context-link zien in de content header', async () => {
         const header = await vlContentHeaderPage.getHeader();
         const link = await header.getContextLink();
         await assert.eventually.equal(link.getText(), 'Context');
     });
 
-    it('als gebruiker kan ik een title-link meegeven', async () => {
+    it('als gebruiker kan ik de title-link zien in de content header', async () => {
         const header = await vlContentHeaderPage.getHeader();
         const link = await header.getTitleLink();
         await assert.eventually.equal(link.getText(), 'Vlaanderen');
     });
 
-    it('image component word correct geladen', async () => {
+    it('als gebruiker kan ik de afbeelding zien in de content header', async () => {
         const header = await vlContentHeaderPage.getHeader();
         const imageComponent = await header.getImageComponent();
         assert.isNotNull(imageComponent);
@@ -29,5 +29,5 @@ describe('vl-content-header', async () => {
 
     after(async () => {
         return driver.quit();
-    })
+    });
 });
