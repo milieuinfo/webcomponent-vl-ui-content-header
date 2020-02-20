@@ -12,13 +12,13 @@ describe('vl-content-header', async () => {
     it('als gebruiker kan ik een context-link meegegeven', async () => {
         const header = await vlContentHeaderPage.getHeader();
         const link = await header.getContextLink();
-        assert.equals(await link.getText(), 'Context');
+        assert.equal(await link.getText(), 'Context');
     });
 
     it('als gebruiker kan ik een title-link meegeven', async () => {
         const header = await vlContentHeaderPage.getHeader();
         const link = await header.getTitleLink();
-        assert.equals(await link.getText(), 'Vlaanderen');
+        assert.equal(await link.getText(), 'Vlaanderen');
     });
 
     it('image component word correct geladen', async () => {
