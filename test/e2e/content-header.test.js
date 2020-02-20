@@ -23,8 +23,7 @@ describe('vl-content-header', async () => {
 
     it('image component word correct geladen', async () => {
         const header = await vlContentHeaderPage.getHeader();
-        const imageComponent = await header.getImageComponent();
-        assert.isNotNull(imageComponent);
+        await assert.eventually.isNotNull(header.getImageComponent());
     });
 
     after(async () => {
