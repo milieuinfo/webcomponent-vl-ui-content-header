@@ -23,8 +23,7 @@ describe('vl-content-header', async () => {
 
     it('als gebruiker kan ik de afbeelding zien in de content header', async () => {
         const header = await vlContentHeaderPage.getHeader();
-        const imageComponent = await header.getImageComponent();
-        assert.isNotNull(imageComponent);
+        await assert.eventually.isNotNull(header.getImageComponent());
     });
 
     after(async () => {
