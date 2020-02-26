@@ -25,8 +25,4 @@ describe('vl-content-header', async () => {
         const header = await vlContentHeaderPage.getHeader();
         await assert.eventually.isNotNull(header.getImageComponent());
     });
-
-    after(async () => {
-        return driver.quit();
-    });
 });
