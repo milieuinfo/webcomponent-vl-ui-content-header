@@ -46,8 +46,8 @@
           assert.isTrue(slottedContextLink(contentHeader).classList.contains('vl-content-header__context__link'));
           slottedContextLink(contentHeader).removeAttribute('class');
           setTimeout(() => {
-            rt.isTrue(slotableContextLink(contentHeader).isEqualNode(slottedContextLink(contentHeader)));
-            done;
+            assert.isTrue(slotableContextLink(contentHeader).isEqualNode(slottedContextLink(contentHeader)));
+            done();
           });
         });
       });
