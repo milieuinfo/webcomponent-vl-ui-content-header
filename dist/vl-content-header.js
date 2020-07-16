@@ -6,7 +6,6 @@ import {vlElement, define} from '/node_modules/vl-ui-core/dist/vl-core.js';
  * @classdesc
  *
  * @extends HTMLElement
- * @mixin vlElement
  *
  * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-content-header/releases/latest|Release notes}
  * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-content-header/issues|Issues}
@@ -17,7 +16,7 @@ export class VlContentHeader extends vlElement(HTMLElement) {
   constructor() {
     super(`
       <style>
-        @import '/node_modules/vl-ui-content-header/dist/style.css';
+        @import '/node_modules/vl-ui-header/dist/style.css';
       </style>
         <header class="vl-content-header vl-content-header--large vl-content-header--show-mobile vl-content-header--has-context">
           <div class="vl-content-header__wrapper">
