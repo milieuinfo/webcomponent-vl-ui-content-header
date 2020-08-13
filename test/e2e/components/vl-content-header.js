@@ -1,5 +1,5 @@
 const {VlElement} = require('vl-ui-core').Test;
-const {By} = require('selenium-webdriver');
+const {By} = require('vl-ui-core').Test.Setup;
 const {VlImage} = require('vl-ui-image').Test;
 
 class VlContentHeader extends VlElement {
