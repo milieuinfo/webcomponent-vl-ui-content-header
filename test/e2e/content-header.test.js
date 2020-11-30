@@ -1,11 +1,12 @@
 
-const {assert, driver} = require('vl-ui-core').Test.Setup;
+const {assert, getDriver} = require('vl-ui-core').Test.Setup;
 const VlContentHeaderPage = require('./pages/vl-content-header.page');
 
 describe('vl-content-header', async () => {
-  const vlContentHeaderPage = new VlContentHeaderPage(driver);
+  let vlContentHeaderPage;
 
-  before(async () => {
+  before(() => {
+    vlContentHeaderPage = new VlContentHeaderPage(getDriver());
     return vlContentHeaderPage.load();
   });
 
