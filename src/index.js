@@ -1,3 +1,1 @@
-module.exports = {
-  VlContentHeader: require('../dist/vl-content-header.src.js').VlContentHeader,
-};
+export * from '../dist/vl-content-header.src.js';
