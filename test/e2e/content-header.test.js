@@ -10,6 +10,10 @@ describe('vl-content-header', async () => {
     return vlContentHeaderPage.load();
   });
 
+  it('WCAG', async () => {
+    await assert.eventually.isFalse(vlContentHeaderPage.hasWcagIssues());
+  });
+
   it('als gebruiker kan ik een context-link zien in de content header', async () => {
     const header = await vlContentHeaderPage.getHeader();
     const link = await header.getContextLink();

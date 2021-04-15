@@ -19,18 +19,18 @@ export class VlContentHeader extends vlElement(HTMLElement) {
       <style>
         @import '/src/style.css';
       </style>
-        <header class="vl-content-header vl-content-header--large vl-content-header--show-mobile vl-content-header--has-context">
-          <div class="vl-content-header__wrapper">
-        <picture id="picture" class="vl-content-header__bg"></picture>
-        <div class="vl-layout">
-          <div class="vl-content-header__content">
-          <div id="context" class="vl-content-header__context vl-content-header__context--has-link"></div>
-            <h2 id="title" class="vl-content-header__title vl-content-header__title--has-link"></h2>
+      <header class="vl-content-header vl-content-header--large vl-content-header--show-mobile vl-content-header--has-context">
+        <div class="vl-content-header__wrapper">
+          <picture id="picture" class="vl-content-header__bg"></picture>
+          <div class="vl-layout">
+            <div class="vl-content-header__content">
+            <div id="context" class="vl-content-header__context vl-content-header__context--has-link"></div>
+              <h2 id="title" class="vl-content-header__title vl-content-header__title--has-link"></h2>
+            </div>
           </div>
         </div>
-      </div>
-    </header>
-  `);
+      </header>
+    `);
   }
 
   connectedCallback() {
